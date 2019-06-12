@@ -9,7 +9,30 @@
 import Foundation
 import UIKit
 
-class WeatherListTableViewController: UITableViewController {
+class WeatherListTableViewController: UITableViewController, AddWeatherDelegate  {
+    
+    private var weatherListViewModel = WeatherListViewModel()
+    
+    func addWeatherDidSave(vm: WeatherViewModel) { // where you'll send the info using the weather view model
+        
+        self.weatherListViewModel.addWeatherViewModel(vm)
+        //add view model to we ther view models array
+        self.tableView.reloadData()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let nav = segue.destination as? UINavigationController else {
+            fatalError("nav not found") }
+        
+        guard let addWeatherCityVC = nav.viewControllers.first as? AddWeatherCityViewController else {
+            fatalError("addWeatherCity not found")
+        }
+        
+        addWeatherCityVC.delegate = self
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,14 +44,17 @@ class WeatherListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        print("rows: \(section )")
+        return self.weatherListViewModel.numberOfRows(section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
         
-        cell.cityNameLabel?.text = "huston"
-        cell.tempLable?.text = "70°"
+        let weatherVM = self.weatherListViewModel.modelAt(indexPath.row)
+        
+        cell.cityNameLabel?.text = weatherVM.name
+        cell.tempLable?.text = "\(weatherVM.currentTemp.temp)"
         
         return cell
     }

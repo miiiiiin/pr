@@ -36,7 +36,7 @@ class AddWeatherCityViewController: UIViewController {
                     //have to use weak self because there's a possibility of retained cycles
                     //if we're able to unwrap then we can get delegate
                     if let delegate = self?.delegate {
-                        delegate.addWeatherDidSave(vm: weatherVM)
+                        delegate.addWeatherDidSave(vm: weatherVM) //pass the view model to whoever subscribed to that delegate 
                         self?.dismiss(animated: true, completion: nil)
                     }
                 }
