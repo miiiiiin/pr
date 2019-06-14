@@ -15,7 +15,7 @@ struct WeatherListViewModel {
     
     mutating func addWeatherViewModel(_ vm: WeatherViewModel) {
         self.weatherViewModels.append(vm)
-        print("models : \(self.weatherViewModels )")
+        print("models : \(self.weatherViewModels)")
     }
     
     //add number of rows on tableview
@@ -26,7 +26,6 @@ struct WeatherListViewModel {
     func modelAt(_ index: Int) -> WeatherViewModel {
         return self.weatherViewModels[index]
     }
-    
 }
 
 struct WeatherViewModel: Decodable {
@@ -37,7 +36,6 @@ struct WeatherViewModel: Decodable {
         case name
         case currentTemp = "main"
     }
-   
 }
 
 struct TempViewModel: Decodable {
