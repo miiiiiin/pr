@@ -12,6 +12,7 @@ import UIKit
 class WeatherListTableViewController: UITableViewController, AddWeatherDelegate  {
     
     private var weatherListViewModel = WeatherListViewModel()
+    private var lastUnitSelection :Unit!
     
     func addWeatherDidSave(vm: WeatherViewModel) { // where you'll send the info using the weather view model
         
@@ -42,11 +43,24 @@ class WeatherListTableViewController: UITableViewController, AddWeatherDelegate 
     
     private func prepareSettings(segue: UIStoryboardSegue) {
         
+        guard let nav = segue.destination as? UINavigationController else {
+            fatalError("nav not found") }
+        
+        guard let settingsTableVC = nav.viewControllers.first as? SettingsTableViewController else {
+            fatalError("setting table not found")
+        }
+        
+        settingsTableVC.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let userdefaults = UserDefaults.standard
+        if let value = userdefaults.value(forKey: "unit") as? String {
+            self.lastUnitSelection = Unit(rawValue: value)!
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -71,7 +85,19 @@ class WeatherListTableViewController: UITableViewController, AddWeatherDelegate 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+}
+
+extension WeatherListTableViewController: settingsDelegate {
     
-    
-    
+    func settingsDone(vm: SettingsViewModel) {
+        print("settings done : \(vm)")
+        
+        print("last unit : \(self.lastUnitSelection.rawValue)")
+        
+        if self.lastUnitSelection.rawValue != vm.selectedUnit.rawValue {
+            self.weatherListViewModel.updateUnit(to: vm.selectedUnit)
+            self.tableView.reloadData()
+            self.lastUnitSelection = Unit(rawValue: vm.selectedUnit.rawValue)
+        }
+    }
 }

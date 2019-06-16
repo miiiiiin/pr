@@ -21,7 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance().tintColor = UIColor.white
         
+        // set default setting as fahrenheit
+        setUpDefaultSettings()
+        
         return true
+    }
+    
+    private func setUpDefaultSettings() {
+        
+        let userdefaults = UserDefaults.standard
+        if userdefaults.value(forKey: "unit") == nil {
+            userdefaults.set(Unit.fahrenheit.rawValue, forKey: "unit")
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

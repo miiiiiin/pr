@@ -26,11 +26,43 @@ struct WeatherListViewModel {
     func modelAt(_ index: Int) -> WeatherViewModel {
         return self.weatherViewModels[index]
     }
+    
+    mutating private func toCelsius() {
+        
+        //iterate through weather view list model
+        weatherViewModels = weatherViewModels.map { vm in
+            
+            var weatherModel = vm
+            weatherModel.currentTemp.temp = (weatherModel.currentTemp.temp - 32) * 5/9
+            
+            return weatherModel
+        }
+    }
+    
+    mutating private func toFahrenheit() {
+        
+        weatherViewModels = weatherViewModels.map { vm in
+            
+            var weatherModel = vm
+            weatherModel.currentTemp.temp = (weatherModel.currentTemp.temp * 9/5) + 32
+            
+            return weatherModel
+        }
+    }
+    
+    mutating func updateUnit(to unit: Unit) {
+        switch unit {
+            case .celsius:
+                toCelsius()
+            case .fahrenheit:
+                toFahrenheit()
+        }
+    }
 }
 
 struct WeatherViewModel: Decodable {
     let name: String
-    let currentTemp: TempViewModel //when json is being decoding it's going to look at this property "main" and match with json, and try to decode all of the fields into our tempVIewModel
+    var currentTemp: TempViewModel //when json is being decoding it's going to look at this property "main" and match with json, and try to decode all of the fields into our tempVIewModel
     
     private enum CodingKeys: String, CodingKey { //mapping with json api properties
         case name
@@ -39,7 +71,7 @@ struct WeatherViewModel: Decodable {
 }
 
 struct TempViewModel: Decodable {
-    let temp: Double
+    var temp: Double
     let tempeMin: Double
     let tempMax: Double
     
