@@ -19,6 +19,7 @@
 		817EA29222B4A3A500B35B64 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817EA29122B4A3A500B35B64 /* SettingsViewModel.swift */; };
 		FACB105B22B1605A003A9B83 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB105A22B1605A003A9B83 /* Double+Extensions.swift */; };
 		FACB105D22B1684D003A9B83 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB105C22B1684D003A9B83 /* SettingsTableViewController.swift */; };
+		FACB105F22B5CD93003A9B83 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB105E22B5CD93003A9B83 /* SettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		817EA29122B4A3A500B35B64 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		FACB105A22B1605A003A9B83 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		FACB105C22B1684D003A9B83 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		FACB105E22B5CD93003A9B83 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				817C8FD822AE09B200F8EF83 /* WeatherListViewModel.swift */,
-				817EA29122B4A3A500B35B64 /* SettingsViewModel.swift */,
+				FACB105E22B5CD93003A9B83 /* SettingsViewModel.swift */,
 			);
 			path = VIewModels;
 			sourceTree = "<group>";
@@ -204,7 +206,7 @@
 				817C8FD922AE09B200F8EF83 /* WeatherListViewModel.swift in Sources */,
 				817C8FD722AE004D00F8EF83 /* WebService.swift in Sources */,
 				817C8FBB22ADF52400F8EF83 /* AppDelegate.swift in Sources */,
-				817EA29222B4A3A500B35B64 /* SettingsViewModel.swift in Sources */,
+				FACB105F22B5CD93003A9B83 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
