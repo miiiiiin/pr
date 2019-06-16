@@ -117,28 +117,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ci6-t3-8ec">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ci6-t3-8ec" customClass="BindingTextField" customModule="Weather" customModuleProvider="target">
                                 <rect key="frame" x="22" y="103" width="331" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1BT-xe-MF5" customClass="BindingTextField" customModule="Weather" customModuleProvider="target">
+                                <rect key="frame" x="22" y="155" width="331" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elC-y8-f3N">
-                                <rect key="frame" x="170" y="156" width="34" height="30"/>
+                                <rect key="frame" x="170" y="357" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveCityBtnPressed:" destination="y3L-RA-b9K" eventType="touchUpInside" id="mHH-bM-xRf"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzP-dJ-W1F" customClass="BindingTextField" customModule="Weather" customModuleProvider="target">
+                                <rect key="frame" x="22" y="213" width="331" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="elC-y8-f3N" firstAttribute="leading" secondItem="2uv-QX-kyv" secondAttribute="leading" constant="170" id="5S9-vv-c8O"/>
                             <constraint firstItem="ci6-t3-8ec" firstAttribute="top" secondItem="2uv-QX-kyv" secondAttribute="top" constant="39" id="Dzh-R0-iA6"/>
+                            <constraint firstItem="1BT-xe-MF5" firstAttribute="leading" secondItem="ci6-t3-8ec" secondAttribute="leading" id="ELL-Xb-xUq"/>
                             <constraint firstItem="elC-y8-f3N" firstAttribute="centerX" secondItem="AL9-ba-7AY" secondAttribute="centerX" id="Fb9-ZC-NGG"/>
-                            <constraint firstItem="elC-y8-f3N" firstAttribute="top" secondItem="ci6-t3-8ec" secondAttribute="bottom" constant="23" id="IMI-t3-jCX"/>
+                            <constraint firstItem="elC-y8-f3N" firstAttribute="centerX" secondItem="1BT-xe-MF5" secondAttribute="centerX" id="NTA-Bd-7cK"/>
+                            <constraint firstItem="bzP-dJ-W1F" firstAttribute="top" secondItem="1BT-xe-MF5" secondAttribute="bottom" constant="28" id="WRp-01-QN8"/>
+                            <constraint firstItem="1BT-xe-MF5" firstAttribute="top" secondItem="ci6-t3-8ec" secondAttribute="bottom" constant="22" id="Yce-fa-1dF"/>
+                            <constraint firstItem="2uv-QX-kyv" firstAttribute="bottom" secondItem="elC-y8-f3N" secondAttribute="bottom" constant="280" id="awh-xU-3zv"/>
+                            <constraint firstItem="1BT-xe-MF5" firstAttribute="leading" secondItem="bzP-dJ-W1F" secondAttribute="leading" id="bfd-p3-3Uu"/>
                             <constraint firstItem="ci6-t3-8ec" firstAttribute="centerX" secondItem="elC-y8-f3N" secondAttribute="centerX" id="hvr-tB-Wk2"/>
                             <constraint firstItem="ci6-t3-8ec" firstAttribute="leading" secondItem="2uv-QX-kyv" secondAttribute="leading" constant="22" id="lxR-AV-Met"/>
+                            <constraint firstItem="elC-y8-f3N" firstAttribute="centerX" secondItem="bzP-dJ-W1F" secondAttribute="centerX" id="md6-Wq-IeB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2uv-QX-kyv"/>
                     </view>
@@ -151,6 +169,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cityNameTextField" destination="ci6-t3-8ec" id="ZoO-dC-Vid"/>
+                        <outlet property="stateNameTextField" destination="1BT-xe-MF5" id="JlN-nu-t2U"/>
+                        <outlet property="zipTextField" destination="bzP-dJ-W1F" id="kdn-4W-Xrt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g57-y4-E9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
