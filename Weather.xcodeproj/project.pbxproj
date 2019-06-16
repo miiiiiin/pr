@@ -16,6 +16,7 @@
 		817C8FD422ADFA3C00F8EF83 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817C8FD322ADFA3C00F8EF83 /* WeatherCell.swift */; };
 		817C8FD722AE004D00F8EF83 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817C8FD622AE004D00F8EF83 /* WebService.swift */; };
 		817C8FD922AE09B200F8EF83 /* WeatherListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817C8FD822AE09B200F8EF83 /* WeatherListViewModel.swift */; };
+		817EA29222B4A3A500B35B64 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817EA29122B4A3A500B35B64 /* SettingsViewModel.swift */; };
 		FACB105B22B1605A003A9B83 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB105A22B1605A003A9B83 /* Double+Extensions.swift */; };
 		FACB105D22B1684D003A9B83 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB105C22B1684D003A9B83 /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		817C8FD322ADFA3C00F8EF83 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		817C8FD622AE004D00F8EF83 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		817C8FD822AE09B200F8EF83 /* WeatherListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewModel.swift; sourceTree = "<group>"; };
+		817EA29122B4A3A500B35B64 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		FACB105A22B1605A003A9B83 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		FACB105C22B1684D003A9B83 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				817C8FD822AE09B200F8EF83 /* WeatherListViewModel.swift */,
+				817EA29122B4A3A500B35B64 /* SettingsViewModel.swift */,
 			);
 			path = VIewModels;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				817C8FD922AE09B200F8EF83 /* WeatherListViewModel.swift in Sources */,
 				817C8FD722AE004D00F8EF83 /* WebService.swift in Sources */,
 				817C8FBB22ADF52400F8EF83 /* AppDelegate.swift in Sources */,
+				817EA29222B4A3A500B35B64 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
