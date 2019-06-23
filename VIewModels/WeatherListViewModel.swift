@@ -32,8 +32,8 @@ struct WeatherListViewModel {
         //iterate through weather view list model
         weatherViewModels = weatherViewModels.map { vm in
             
-            var weatherModel = vm
-            weatherModel.currentTemp.temp = (weatherModel.currentTemp.temp - 32) * 5/9
+            let weatherModel = vm
+            weatherModel.currentTemp.temp.value = (weatherModel.currentTemp.temp.value - 32) * 5/9
             
             return weatherModel
         }
@@ -43,8 +43,8 @@ struct WeatherListViewModel {
         
         weatherViewModels = weatherViewModels.map { vm in
             
-            var weatherModel = vm
-            weatherModel.currentTemp.temp = (weatherModel.currentTemp.temp * 9/5) + 32
+            let weatherModel = vm
+            weatherModel.currentTemp.temp.value = (weatherModel.currentTemp.temp.value * 9/5) + 32
             
             return weatherModel
         }
@@ -60,9 +60,56 @@ struct WeatherListViewModel {
     }
 }
 
+
+//Type Eraser
+//<T> -> Generic type (it can work on strings and different types)
+//make sure that the type is allowed to decodable
+class Dynamic<T>: Decodable where T: Decodable {
+    
+    //shorthand for our type
+    typealias Listener = ( T) -> () //closure, going to return the same type that value contains
+    //closure not able to conform to decodable
+    
+    var listener: Listener?
+    
+    var value: T {
+        didSet {
+            //listener : it can pass in that particular type
+            listener?(value)
+        }
+    }
+    
+    //have to allow the ui to bind to this particular value
+    func bind(listener: @escaping Listener) {
+        self.listener = listener
+        self.listener?(self.value) //fire the listener
+        
+    }
+    
+    init(_ value: T) {
+        self.value = value
+    }
+    
+    //for the closure (type 'Dynamic' does not conform to protocol 'Decodable')
+    private enum CodingKeys: CodingKey {
+        case value
+    }
+}
+
+
 struct WeatherViewModel: Decodable {
-    let name: String
+    let name: Dynamic<String>
     var currentTemp: TempViewModel //when json is being decoding it's going to look at this property "main" and match with json, and try to decode all of the fields into our tempVIewModel
+    
+    //decodable initializer
+    init(from decoder: Decoder) throws {
+        
+        //accept the container (get the container by type keyedby, which will be represented by codingkeys.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        name = Dynamic(try container.decode(String.self, forKey: .name))
+        currentTemp = try container.decode(TempViewModel.self, forKey: .currentTemp)
+    }
     
     private enum CodingKeys: String, CodingKey { //mapping with json api properties
         case name
@@ -71,9 +118,18 @@ struct WeatherViewModel: Decodable {
 }
 
 struct TempViewModel: Decodable {
-    var temp: Double
-    let tempeMin: Double
-    let tempMax: Double
+    var temp: Dynamic<Double>
+    let tempeMin: Dynamic<Double>
+    let tempMax: Dynamic<Double>
+    
+    init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        temp = Dynamic(try container.decode(Double.self, forKey: .temp))
+        tempeMin = Dynamic(try container.decode(Double.self, forKey: .tempeMin))
+        tempMax = Dynamic(try container.decode(Double.self, forKey: .tempMax))
+    }
     
     private enum CodingKeys: String, CodingKey {
         case temp = "temp"

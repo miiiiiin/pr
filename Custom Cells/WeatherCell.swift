@@ -15,8 +15,8 @@ class WeatherCell: UITableViewCell {
     @IBOutlet weak var tempLable: UILabel!
     
     func configure(_ vm: WeatherViewModel) {
-        self.cityNameLabel?.text = vm.name
-        self.tempLable?.text = "\(vm.currentTemp.temp.formatAsDegree)"
+        self.cityNameLabel?.text = vm.name.value
+        self.tempLable?.text = "\(vm.currentTemp.temp.value.formatAsDegree)"
         
     }
 }

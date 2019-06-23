@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8135142622BE5BF000B96113 /* WeatherDeatilsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135142522BE5BF000B96113 /* WeatherDeatilsViewController.swift */; };
 		817C8FBB22ADF52400F8EF83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817C8FBA22ADF52400F8EF83 /* AppDelegate.swift */; };
 		817C8FC022ADF52400F8EF83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817C8FBE22ADF52400F8EF83 /* Main.storyboard */; };
 		817C8FC222ADF52500F8EF83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817C8FC122ADF52500F8EF83 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8135142522BE5BF000B96113 /* WeatherDeatilsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDeatilsViewController.swift; sourceTree = "<group>"; };
 		817C8FB722ADF52400F8EF83 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		817C8FBA22ADF52400F8EF83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		817C8FBF22ADF52400F8EF83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				817C8FCE22ADF67800F8EF83 /* WeatherListTableViewController.swift */,
 				817C8FD022ADF69D00F8EF83 /* AddWeatherCityViewController.swift */,
 				FACB105C22B1684D003A9B83 /* SettingsTableViewController.swift */,
+				8135142522BE5BF000B96113 /* WeatherDeatilsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				817C8FD722AE004D00F8EF83 /* WebService.swift in Sources */,
 				817EA29722B65C2700B35B64 /* BindingTextField.swift in Sources */,
 				817C8FBB22ADF52400F8EF83 /* AppDelegate.swift in Sources */,
+				8135142622BE5BF000B96113 /* WeatherDeatilsViewController.swift in Sources */,
 				817EA29222B4A3A500B35B64 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
