@@ -13,13 +13,37 @@ class WeatherListTableViewController: UITableViewController, AddWeatherDelegate 
     
     private var weatherListViewModel = WeatherListViewModel()
     private var lastUnitSelection :Unit!
+    //implementing generic tableview
+    private var dataSource: TableViewDataSource<WeatherCell, WeatherViewModel>?//WeatherDataSource?
     
     func addWeatherDidSave(vm: WeatherViewModel) { // where you'll send the info using the weather view model
         
         self.weatherListViewModel.addWeatherViewModel(vm)
         //add view model to we ther view models array
+        //only change weatherlistviewmodel not weatherviewmodel
+        self.dataSource?.updateItems(self.weatherListViewModel.weatherViewModels) //update items for viewmodel
         self.tableView.reloadData()
         
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let userdefaults = UserDefaults.standard
+        if let value = userdefaults.value(forKey: "unit") as? String {
+            self.lastUnitSelection = Unit(rawValue: value)!
+        }
+        
+        //implementing generic tableview
+        self.dataSource = TableViewDataSource(cellIdentifier: "WeatherCell", items: self.weatherListViewModel.weatherViewModels) { cell, vm in
+            
+            cell.cityNameLabel.text = vm.name.value
+            cell.tempLable.text = vm.currentTemp.temp.value.formatAsDegree
+        }//WeatherDataSource(self.weatherListViewModel)
+        
+        //assign weather data source
+        self.tableView.dataSource = self.dataSource
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,36 +90,20 @@ class WeatherListTableViewController: UITableViewController, AddWeatherDelegate 
         // ViewModel -> view binding
         weatherDetailVC.weatherViewModel = weatherVM
     }
+   
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let userdefaults = UserDefaults.standard
-        if let value = userdefaults.value(forKey: "unit") as? String {
-            self.lastUnitSelection = Unit(rawValue: value)!
-        }
-    }
+    // - removing tableview controller function -
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("rows: \(section )")
-        return self.weatherListViewModel.numberOfRows(section)
-    }
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        print("rows: \(section )")
+//        return self.weatherListViewModel.numberOfRows(section)
+//    }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        
-        let weatherVM = self.weatherListViewModel.modelAt(indexPath.row)
-        
-        cell.configure(weatherVM)
-        
-        return cell
-    }
-    
+ 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }

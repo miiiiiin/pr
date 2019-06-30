@@ -9,11 +9,13 @@
 import Foundation
 
 //controlling the whole main screen
-struct WeatherListViewModel {
+/*struct*/ class WeatherListViewModel { //struct is just copying data not reference, so changed it into class
     
-    private var weatherViewModels = [WeatherViewModel]()
+    //mutating is only valid on value types meaning struct
     
-    mutating func addWeatherViewModel(_ vm: WeatherViewModel) {
+    private(set) var weatherViewModels = [WeatherViewModel]()
+    
+    func addWeatherViewModel(_ vm: WeatherViewModel) {
         self.weatherViewModels.append(vm)
         print("models : \(self.weatherViewModels)")
     }
@@ -27,7 +29,7 @@ struct WeatherListViewModel {
         return self.weatherViewModels[index]
     }
     
-    mutating private func toCelsius() {
+    private func toCelsius() {
         
         //iterate through weather view list model
         weatherViewModels = weatherViewModels.map { vm in
@@ -39,7 +41,7 @@ struct WeatherListViewModel {
         }
     }
     
-    mutating private func toFahrenheit() {
+    private func toFahrenheit() {
         
         weatherViewModels = weatherViewModels.map { vm in
             
@@ -50,7 +52,7 @@ struct WeatherListViewModel {
         }
     }
     
-    mutating func updateUnit(to unit: Unit) {
+    func updateUnit(to unit: Unit) {
         switch unit {
             case .celsius:
                 toCelsius()
