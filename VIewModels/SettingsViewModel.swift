@@ -33,7 +33,7 @@ struct SettingsViewModel {
     
 //    let units = [Unit.celsius, Unit.fahrenheit] //to display on table view (it has to be array)
     let units = Unit.allCases // give all the different cases
-    
+    private var _selectedUnit: Unit = Unit.fahrenheit
 //    private var _selectedUnit: Unit = Unit.fahrenheit //default value for selected unit
     
     //selectedUnit property
@@ -47,7 +47,7 @@ struct SettingsViewModel {
                 unitValue = value
             }
             
-            return Unit(rawValue: unitValue)!
+            return _selectedUnit//Unit(rawValue: unitValue)!
             
         // set the value to userdefaults
         } set {
